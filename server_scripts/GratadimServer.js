@@ -162,5 +162,100 @@ event.custom({
   "result": "tconstruct:smeltery_controller"
 })
 
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:stone_pickaxe' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:stone_shovel' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:stone_axe' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:stone_sword' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:stone_hoe' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:iron_pickaxe' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:iron_shovel' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:iron_axe' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:iron_sword' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:iron_hoe' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:golden_pickaxe' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:golden_shovel' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:golden_axe' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:golden_sword' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:golden_hoe' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:diamond_pickaxe' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:diamond_shovel' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:diamond_axe' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:diamond_sword' })
+
+// remove the default smeltery controller recipie
+event.remove({ output: 'minecraft:diamond_hoe' })
+
+// Add raw copper & raw tin crafting recipie for bronze dust
+event.shapeless(
+  Item.of('mekanism:dust_bronze', 4), // arg 1: output
+  [
+    '6x minecraft:raw_copper',
+    '2x mekanism:raw_tin'
+  ]
+)
+
+// Etrionic alloyer recipie for bronze
+event.custom({
+  "type": "ad_astra:alloying",
+  "cookingtime": 100,
+  "energy": 20,
+  "ingredients": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "mekanism:ingot_tin"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "mekanism:ingot_bronze"
+  }
+})
+
+
 console.log('Hello! The recipe event has fired!')
 })
