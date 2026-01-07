@@ -256,6 +256,90 @@ event.custom({
   }
 })
 
+// Stony osmium items into block form
+event.shapeless(
+  Item.of('kubejs:stony_osmium_block', 1),
+  [
+    '9x kubejs:stony_osmium'
+  ]
+)
+
+// Stony osmium block back into items
+event.shapeless(
+  Item.of('kubejs:stony_osmium', 9),
+  [
+    '1x kubejs:stony_osmium_block'
+  ]
+)
+
+// Etrionic crafting recipie for osmium item refinement
+event.custom({
+  "type": "ad_astra:alloying",
+  "cookingtime": 200,
+  "energy": 40,
+  "ingredients": [
+    {
+      "item": "ad_astra:desh_nugget"
+    },
+    {
+      "item": "kubejs:stony_osmium"
+    },
+    {
+      "item": "kubejs:stony_osmium"
+    },
+    {
+      "item": "kubejs:stony_osmium"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "mekanism:raw_osmium"
+  }
+})
+
+// Etrionic crafting recipie for osmium block refinement
+event.custom({
+  "type": "ad_astra:alloying",
+  "cookingtime": 1800,
+  "energy": 40,
+  "ingredients": [
+    {
+      "item": "ad_astra:desh_ingot"
+    },
+    {
+      "item": "kubejs:stony_osmium_block"
+    },
+    {
+      "item": "kubejs:stony_osmium_block"
+    },
+    {
+      "item": "kubejs:stony_osmium_block"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "mekanism:block_raw_osmium"
+  }
+})
 
 console.log('Hello! The recipe event has fired!')
 })
+
+LootJS.modifiers((event) => {
+	
+// Osmium ore now drops stony osmium
+event.addBlockLootModifier("mekanism:osmium_ore")
+	.removeLoot(Ingredient.all)
+	.addAlternativesLoot(
+		LootEntry.of("kubejs:stony_osmium")
+	);
+
+// Deepslate osmium ore now drops stony osmium
+event.addBlockLootModifier("mekanism:deepslate_osmium_ore")
+	.removeLoot(Ingredient.all)
+	.addAlternativesLoot(
+		LootEntry.of("kubejs:stony_osmium")
+	);
+
+
+});

@@ -5,29 +5,35 @@
 console.info('Hello, World! (Loaded startup scripts)')
 
 StartupEvents.registry('block', event =>{
+	
+	// Add the desh reinforced furnace block
     event.create('desh_furnace','cardinal')// will show up as kubejs:desh_furnace. 'cardinal' is what allows for the directional placement
-    .displayName('Desh Reinforced Blast Furnace')// The name displayed in game
-    .stoneSoundType()//place/break sound effect
-    .hardness(3.5)
-    .resistance(3.5)
-    //.unbreakable()
-    .tagBlock('minecraft:mineable/pickaxe')
-    .tagBlock('minecraft:furnace')
-    .tagBlock('minecraft:needs_iron_tool')
-    //.textureAll('desh_furnace_side')
-    .texture('top', 'kubejs:block/desh_furnace_top')
-    .texture('bottom', 'kubejs:block/desh_pillar_top')
-    .texture('north', 'kubejs:block/desh_furnace_front')
-    //.texture('east', 'kubejs:block/desh_furnace_side')
-    //.texture('south', 'kubejs:block/desh_furnace_side')
-    //.texture('west', 'kubejs:block/desh_furnace_side')
+		.displayName('Desh Reinforced Blast Furnace')
+		.stoneSoundType()
+		.hardness(3.5)
+		.resistance(3.5)
+		.tagBlock('minecraft:mineable/pickaxe')
+		.tagBlock('minecraft:furnace')
+		.tagBlock('minecraft:needs_iron_tool')
+		.texture('top', 'kubejs:block/desh_furnace_top')
+		.texture('bottom', 'kubejs:block/desh_pillar_top')
+		.texture('north', 'kubejs:block/desh_furnace_front')
+	
+	// Stony osmium ore storage block
+	event.create('stony_osmium_block')
+		.displayName('Stony Osmium Block')
+		.stoneSoundType()
+		.hardness(3.5)
+		.resistance(3.5)
+		.tagBlock('minecraft:mineable/pickaxe')
+		.tagBlock('minecraft:needs_stone_tool')
+		.textureAll('kubejs:block/dead_bubble_coral_block')
 })
 
 StartupEvents.registry('item', event => {
-  // The texture for this item has to be placed in kubejs/assets/kubejs/textures/item/test_item.png
-  // If you want a custom item model, you can create one in Blockbench and put it in kubejs/assets/kubejs/models/item/test_item.json
-  event.create('test_item')
 
-  // If you want to specify a different texture location you can do that too, like this:
-  event.create('example_item').texture('kubejs:item/example_item') // This texture would be located at kubejs/assets/mobbo/textures/item/lava.png
+	// Stony osmium item for early 
+	event.create('stony_osmium')
+		.displayName('Stony Osmium')
+		.texture('kubejs:item/stony_osmium')
 })
