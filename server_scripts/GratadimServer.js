@@ -322,7 +322,238 @@ event.custom({
   }
 })
 
+// Crafting of blister steel
+event.shaped(
+    Item.of('kubejs:blister_steel', 3),
+    [
+        'CCC',
+        'III'
+    ],
+    {
+        C: 'minecraft:charcoal',
+        I: {tag:'forge:ingots/iron'}
+    }
+)
+
+// Blister steel melting into steel
+event.custom({
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "kubejs:blister_steel"
+  },
+  "result": {
+    "amount": 60,
+    "fluid": "tconstruct:molten_steel"
+  },
+  "temperature": 750,
+  "time": 128
+})
+
+// Recipie to add bronze casing
+event.shaped(
+    Item.of('kubejs:bronze_casing', 1),
+    [
+        'BGB',
+        'GIG',
+        'BGB'
+    ],
+    {
+        B: {tag:'forge:ingots/bronze'},
+        G: {tag:'forge:glass'},
+        I: {tag:'forge:ingots/iron'}
+    }
+)
+
+// Copper plate gold cast
+event.custom({
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "tag": "tconstruct:casts/multi_use/plate"
+  },
+  "cooling_time": 83,
+  "fluid": {
+    "amount": 90,
+    "tag": "tconstruct:molten_copper"
+  },
+  "result": {
+    "item": "kubejs:copper_plate"
+  }
+})
+
+// Copper plate sand cast
+event.custom({
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "tag": "tconstruct:casts/multi_use/plate"
+  },
+  "cooling_time": 83,
+  "fluid": {
+    "amount": 90,
+    "tag": "tconstruct:molten_copper"
+  },
+  "result": {
+    "item": "kubejs:copper_plate"
+  }
+})
+
+// Recipie to add copper plate
+event.shaped(
+    Item.of('kubejs:copper_plate', 1),
+    [
+        'C',
+        'C'
+    ],
+    {
+        C: {tag:'forge:ingots/copper'}
+    }
+)
+
+// remove the default melter recipie
+event.remove({ output: 'tconstruct:seared_melter' })
+
+// New melter recipie
+event.shaped(
+    Item.of('tconstruct:seared_melter', 1),
+    [
+        'GGG',
+        'GBG',
+        'SSS'
+    ],
+    {
+        G: {tag:'forge:glass'},
+        B: 'kubejs:bronze_casing',
+        S: 'tconstruct:seared_bricks'
+    }
+)
+
+// remove the default seared heater recipie
+event.remove({ output: 'tconstruct:seared_heater' })
+
+// New seared  heater recipie with furnace
+event.shaped(
+    Item.of('tconstruct:seared_heater', 1),
+    [
+        'SSS',
+        'SFS',
+        'SSS'
+    ],
+    {
+        S: 'tconstruct:seared_brick',
+        F: 'minecraft:furnace'
+    }
+)
+
+// Zeroth step for tier 1 circuits
+event.shaped(
+    Item.of('kubejs:circuit_tier1_stage1', 1),
+    [
+        ' K ',
+        'GGG'
+    ],
+    {
+        K: {tag:'forge:tools/knives'},
+        G: {tag:'forge:glass_panes'}
+    }
+).damageIngredient("#forge:tools/knives")
+
+// First casting step of tier 1 circuit
+event.custom({
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "item": "kubejs:circuit_tier1_stage1"
+  },
+  "cast_consumed": true,
+  "cooling_time": 50,
+  "fluid": {
+    "amount": 90,
+    "tag": "forge:molten_copper"
+  },
+  "result": "kubejs:circuit_tier1_stage2"
+})
+
+// second casting step of tier 1 circuit
+event.custom({
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "item": "kubejs:circuit_tier1_stage2"
+  },
+  "cast_consumed": true,
+  "cooling_time": 50,
+  "fluid": {
+    "amount": 250,
+    "tag": "tconstruct:venom"
+  },
+  "result": "kubejs:circuit_tier1_stage3"
+})
+
+// third casting step of tier 1 circuit
+event.custom({
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "item": "kubejs:circuit_tier1_stage3"
+  },
+  "cast_consumed": true,
+  "cooling_time": 50,
+  "fluid": {
+    "amount": 90,
+    "tag": "forge:molten_tin"
+  },
+  "result": "kubejs:circuit_tier1_stage4"
+})
+
+// remove the default nosecone recipie
+event.remove({ output: 'ad_astra:rocket_nose_cone' })
+
+// New rocket nosecone with circuit
+event.shaped(
+    Item.of('ad_astra:rocket_nose_cone', 1),
+    [
+        ' R ',
+        ' S ',
+        'SCS'
+    ],
+    {
+        R: 'minecraft:lightning_rod',
+        S: {tag: 'forge:plates/steel'},
+        C: {tag: 'forge:circuit_tier1'}
+    }
+)
+
 console.log('Hello! The recipe event has fired!')
+})
+
+// log stripping in the gui test
+ServerEvents.recipes((event) => {
+  const { kubejs } = event.recipes;
+
+  kubejs
+    .shapeless("stripped_oak_log", 
+	[
+		"oak_log", 
+		"#minecraft:axes"
+	])
+    .damageIngredient("#minecraft:axes");
+});
+
+// Listen to item tag event
+ServerEvents.tags('fluid', event => {
+  // Assign tier 3 and 4 rocket fuels
+  event.add('ad_astra:tier_3_rocket_fuel', '#tconstruct:molten_duralumin')
+  event.add('ad_astra:tier_4_rocket_fuel', '#forge:fusion_fuel')
+  
+  // Remove the fuel usage from the tier 1 fuel
+  event.remove('ad_astra:tier_2_rocket_fuel', '#ad_astra:fuel')
+  event.remove('ad_astra:tier_3_rocket_fuel', '#ad_astra:fuel')
+  event.remove('ad_astra:tier_4_rocket_fuel', '#ad_astra:fuel')
+  
+  // Remove the fuel usage from the tier 2 fuel
+  // Not working for reasons I'm not sure of
+  //event.remove('ad_astra:tier_1_rocket_fuel', '#ad_astra:efficient_fuel')
+  //event.remove('ad_astra:tier_3_rocket_fuel', '#ad_astra:efficient_fuel')
+  //event.remove('ad_astra:tier_4_rocket_fuel', '#ad_astra:efficient_fuel')
+  
+  //event.add('ad_astra:completely_new_tag', 'minecraft:clay_ball')
+  
 })
 
 LootJS.modifiers((event) => {
@@ -340,6 +571,5 @@ event.addBlockLootModifier("mekanism:deepslate_osmium_ore")
 	.addAlternativesLoot(
 		LootEntry.of("kubejs:stony_osmium")
 	);
-
 
 });

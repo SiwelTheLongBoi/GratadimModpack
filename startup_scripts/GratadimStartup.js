@@ -1,6 +1,7 @@
 // priority: 0
-
 // Visit the wiki for more info - https://kubejs.com/
+
+Platform.mods.kubejs.name = 'Gratadim'
 
 console.info('Hello, World! (Loaded startup scripts)')
 
@@ -27,13 +28,64 @@ StartupEvents.registry('block', event =>{
 		.resistance(3.5)
 		.tagBlock('minecraft:mineable/pickaxe')
 		.tagBlock('minecraft:needs_stone_tool')
-		.textureAll('kubejs:block/dead_bubble_coral_block')
+		.textureAll('kubejs:block/stony_osmium_block')
+	
+	// Bronze machine casing
+	event.create('bronze_casing')
+		.displayName('Bronze Casing')
+		.stoneSoundType()
+		.hardness(3.5)
+		.resistance(3.5)
+		.tagBlock('minecraft:mineable/pickaxe')
+		.tagBlock('minecraft:needs_stone_tool')
+		.textureAll('kubejs:block/bronze_casing')
 })
 
 StartupEvents.registry('item', event => {
 
-	// Stony osmium item for early 
+	// Stony osmium item for pre-moon
 	event.create('stony_osmium')
 		.displayName('Stony Osmium')
 		.texture('kubejs:item/stony_osmium')
+	
+	// Blister Steel item for early steel 
+	event.create('blister_steel')
+		.displayName('Blister Steel')
+		.texture('kubejs:item/blister_steel')
+	
+	// Copper plate item for early steel 
+	event.create('copper_plate')
+		.displayName('Copper Plate')
+		.texture('kubejs:item/copper_plate')
+		.tag("forge:plates")
+		
+	// Tier 1 circuit stage 1 
+	event.create('circuit_tier1_stage1')
+		.displayName('Tier 1 Circuit (1/4)')
+		.texture('kubejs:item/circuit_tier1_stage1')
+		
+	// Tier 1 circuit stage 2 
+	event.create('circuit_tier1_stage2')
+		.displayName('Tier 1 Circuit (2/4)')
+		.texture('kubejs:item/circuit_tier1_stage2')
+		
+	// Tier 1 circuit stage 3 
+	event.create('circuit_tier1_stage3')
+		.displayName('Tier 1 Circuit (3/4)')
+		.texture('kubejs:item/circuit_tier1_stage3')
+		
+	// Tier 1 circuit stage 4 
+	event.create('circuit_tier1_stage4')
+		.displayName('Tier 1 Circuit')
+		.texture('kubejs:item/circuit_tier1_stage4')
+		.tag("forge:circuit_tier1")
+})
+
+StartupEvents.registry('fluid', event => {
+  // Nuclear fuel for the tier 3 rocket
+  event.create('nuclear_fuel')
+    .thickTexture(0x2c9948)
+    .bucketColor(0x2c9948)
+    .displayName('Nuclear Fuel')
+	.viscosity(5000)
 })
