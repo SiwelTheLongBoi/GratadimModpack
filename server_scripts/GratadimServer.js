@@ -23,59 +23,6 @@ event.shaped(
     }
 )
 
-// nasa workbench recipie to craft a desh engine
-event.custom({
-  "type": "ad_astra:nasa_workbench",
-  "ingredients": [
-    {
-      "item": "ad_astra:rocket_nose_cone"
-    },
-    {
-      "tag": "ad_astra:steel_blocks"
-    },
-    {
-      "tag": "ad_astra:steel_blocks"
-    },
-    {
-      "tag": "ad_astra:steel_blocks"
-    },
-    {
-      "tag": "ad_astra:steel_blocks"
-    },
-    {
-      "tag": "ad_astra:steel_blocks"
-    },
-    {
-      "tag": "ad_astra:steel_blocks"
-    },
-    {
-      "item": "ad_astra:rocket_fin"
-    },
-    {
-      "item": "ad_astra:steel_tank"
-    },
-    {
-      "item": "ad_astra:steel_tank"
-    },
-    {
-      "item": "ad_astra:rocket_fin"
-    },
-    {
-      "item": "ad_astra:rocket_fin"
-    },
-    {
-      "item": "ad_astra:steel_engine"
-    },
-    {
-      "item": "ad_astra:rocket_fin"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "id": "ad_astra:desh_engine"
-  }
-})
-
 // mekanism crusher to turn 1 desh ingot into 2 desh plates
 event.custom({
 	"conditions": [
@@ -162,64 +109,32 @@ event.custom({
   "result": "tconstruct:smeltery_controller"
 })
 
-// remove the default smeltery controller recipie
+// remove stone tools
 event.remove({ output: 'minecraft:stone_pickaxe' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:stone_shovel' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:stone_axe' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:stone_sword' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:stone_hoe' })
 
-// remove the default smeltery controller recipie
+// remove iron tools
 event.remove({ output: 'minecraft:iron_pickaxe' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:iron_shovel' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:iron_axe' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:iron_sword' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:iron_hoe' })
 
-// remove the default smeltery controller recipie
+// remove golden tools
 event.remove({ output: 'minecraft:golden_pickaxe' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:golden_shovel' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:golden_axe' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:golden_sword' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:golden_hoe' })
 
-// remove the default smeltery controller recipie
+// remove diamond tools
 event.remove({ output: 'minecraft:diamond_pickaxe' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:diamond_shovel' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:diamond_axe' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:diamond_sword' })
-
-// remove the default smeltery controller recipie
 event.remove({ output: 'minecraft:diamond_hoe' })
 
 // Add raw copper & raw tin crafting recipie for bronze dust
@@ -506,7 +421,7 @@ event.remove({ output: 'ad_astra:rocket_nose_cone' })
 
 // New rocket nosecone with circuit
 event.shaped(
-    Item.of('ad_astra:rocket_nose_cone', 1),
+    Item.of('kubejs:rocket_nose_cone_tier1', 1),
     [
         ' R ',
         ' S ',
@@ -518,6 +433,133 @@ event.shaped(
         C: {tag: 'forge:circuit_tier1'}
     }
 )
+
+// remove the default tier1 rocket recipie
+event.remove({ type: "ad_astra:nasa_workbench" })
+
+// nasa workbench recipie to craft a tier 1 rocket
+event.custom({
+  "type": "ad_astra:nasa_workbench",
+  "ingredients": [
+    {
+      "item": "kubejs:rocket_nose_cone_tier1"
+    },
+    {
+      "tag": "ad_astra:steel_blocks"
+    },
+    {
+      "tag": "ad_astra:steel_blocks"
+    },
+    {
+      "tag": "ad_astra:steel_blocks"
+    },
+    {
+      "tag": "ad_astra:steel_blocks"
+    },
+    {
+      "tag": "ad_astra:steel_blocks"
+    },
+    {
+      "tag": "ad_astra:steel_blocks"
+    },
+    {
+      "item": "kubejs:rocket_fin_tier1"
+    },
+    {
+      "item": "ad_astra:steel_tank"
+    },
+    {
+      "item": "ad_astra:steel_tank"
+    },
+    {
+      "item": "kubejs:rocket_fin_tier1"
+    },
+    {
+      "item": "kubejs:rocket_fin_tier1"
+    },
+    {
+      "item": "ad_astra:steel_engine"
+    },
+    {
+      "item": "kubejs:rocket_fin_tier1"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "ad_astra:tier_1_rocket"
+  }
+})
+
+// remove the default rocket fin recipie
+event.remove({ output: 'ad_astra:rocket_fin' })
+
+// New tier 1 rocket nosecone with circuit
+event.shaped(
+    Item.of('kubejs:rocket_fin_tier1', 4),
+    [
+        ' B ',
+        'BSB',
+        'S S'
+    ],
+    {
+        B: {tag: 'forge:plates/bronze'},
+        S: {tag: 'forge:plates/steel'}
+    }
+)
+
+// Bronze plate gold cast
+event.custom({
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "tag": "tconstruct:casts/multi_use/plate"
+  },
+  "cooling_time": 83,
+  "fluid": {
+    "amount": 90,
+    "tag": "forge:molten_bronze"
+  },
+  "result": {
+    "item": "kubejs:bronze_plate"
+  }
+})
+
+// Etrionic crafting recipie for steel from blister steel
+event.custom({
+  "type": "ad_astra:alloying",
+  "cookingtime": 200,
+  "energy": 40,
+  "ingredients": [
+    {
+      "item": "kubejs:blister_steel"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+  ],
+  "result": {
+    "count": 2,
+    "id": "ad_astra:steel_ingot"
+  }
+})
+
+// remove the default etrionic furnace recipie
+event.remove({ output: 'ad_astra:etrionic_blast_furnace' })
+
+// New rocket nosecone with circuit
+event.shaped(
+    Item.of('ad_astra:etrionic_blast_furnace', 1),
+    [
+        'P P',
+        'P P',
+        'DFD'
+    ],
+    {
+        P: {tag: 'forge:plates/steel'},
+        D: {tag: 'forge:plates/desh'},
+        F: 'minecraft:blast_furnace'
+    }
+)
+
 
 console.log('Hello! The recipe event has fired!')
 })
@@ -538,7 +580,7 @@ ServerEvents.recipes((event) => {
 // Listen to item tag event
 ServerEvents.tags('fluid', event => {
   // Assign tier 3 and 4 rocket fuels
-  event.add('ad_astra:tier_3_rocket_fuel', '#tconstruct:molten_duralumin')
+  //event.add('ad_astra:tier_3_rocket_fuel', '#tconstruct:molten_duralumin')
   event.add('ad_astra:tier_4_rocket_fuel', '#forge:fusion_fuel')
   
   // Remove the fuel usage from the tier 1 fuel
@@ -546,14 +588,10 @@ ServerEvents.tags('fluid', event => {
   event.remove('ad_astra:tier_3_rocket_fuel', '#ad_astra:fuel')
   event.remove('ad_astra:tier_4_rocket_fuel', '#ad_astra:fuel')
   
-  // Remove the fuel usage from the tier 2 fuel
-  // Not working for reasons I'm not sure of
-  //event.remove('ad_astra:tier_1_rocket_fuel', '#ad_astra:efficient_fuel')
-  //event.remove('ad_astra:tier_3_rocket_fuel', '#ad_astra:efficient_fuel')
-  //event.remove('ad_astra:tier_4_rocket_fuel', '#ad_astra:efficient_fuel')
+  event.remove('ad_astra:tier_1_rocket_fuel', '#ad_astra:efficent_fuel')
   
-  //event.add('ad_astra:completely_new_tag', 'minecraft:clay_ball')
-  
+  // Re add the fuel usage from the tier 2 fuel
+  event.add('ad_astra:tier_2_rocket_fuel', '#ad_astra:efficient_fuel')
 })
 
 LootJS.modifiers((event) => {

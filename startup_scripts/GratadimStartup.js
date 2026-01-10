@@ -53,7 +53,7 @@ StartupEvents.registry('item', event => {
 		.displayName('Blister Steel')
 		.texture('kubejs:item/blister_steel')
 	
-	// Copper plate item for early steel 
+	// Copper plate item for first plate cast 
 	event.create('copper_plate')
 		.displayName('Copper Plate')
 		.texture('kubejs:item/copper_plate')
@@ -79,6 +79,22 @@ StartupEvents.registry('item', event => {
 		.displayName('Tier 1 Circuit')
 		.texture('kubejs:item/circuit_tier1_stage4')
 		.tag("forge:circuit_tier1")
+		
+	// Tier 1 rocket nose cone 
+	event.create('rocket_nose_cone_tier1')
+		.displayName('Tier 1 Rocket Nose Cone')
+		.texture('kubejs:item/rocket_nose_cone_tier1')
+		
+	// Tier 1 rocket fins 
+	event.create('rocket_fin_tier1')
+		.displayName('Tier 1 Rocket Fin')
+		.texture('kubejs:item/rocket_fin_tier1')
+		
+	// Tier 1 rocket fins 
+	event.create('bronze_plate')
+		.displayName('Bronze Plate')
+		.texture('kubejs:item/bronze_plate')
+		.tag("forge:plates/bronze")
 })
 
 StartupEvents.registry('fluid', event => {
@@ -88,4 +104,5 @@ StartupEvents.registry('fluid', event => {
     .bucketColor(0x2c9948)
     .displayName('Nuclear Fuel')
 	.viscosity(5000)
+	.tag("ad_astra:tier_3_rocket_fuel")
 })
