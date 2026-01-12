@@ -246,7 +246,7 @@ event.shaped(
     ],
     {
         C: 'minecraft:charcoal',
-        I: {tag:'forge:ingots/iron'}
+        I: {tag:'forge:plates/iron'}
     }
 )
 
@@ -363,11 +363,11 @@ event.shaped(
     Item.of('kubejs:circuit_tier1_stage1', 1),
     [
         ' K ',
-        'GGG'
+        'PPP'
     ],
     {
         K: {tag:'forge:tools/knives'},
-        G: {tag:'forge:glass_panes'}
+        P: {tag:'minecraft:planks'}
     }
 ).damageIngredient("#forge:tools/knives")
 
@@ -545,7 +545,7 @@ event.custom({
 // remove the default etrionic furnace recipie
 event.remove({ output: 'ad_astra:etrionic_blast_furnace' })
 
-// New rocket nosecone with circuit
+// etrionic crafting recipie
 event.shaped(
     Item.of('ad_astra:etrionic_blast_furnace', 1),
     [
@@ -560,6 +560,176 @@ event.shaped(
     }
 )
 
+// Crafting recipie for biofuel
+event.custom({
+  "type": "farmersdelight:cooking",
+  "cookingtime": 2000,
+  "experience": 1.0,
+  "ingredients": [
+    {
+		"tag": "forge:crops"
+    },
+    {
+		"tag": "forge:crops"
+    },
+	{
+		"tag": "forge:crops"
+    },
+	{
+		"tag": "forge:crops"
+    },
+	{
+		"tag": "forge:crops"
+    },
+    {
+      "tag": "forge:crops"
+    }
+  ],
+  "recipe_book_tab": "drinks",
+  "result": {
+    "item": "kubejs:biomass"
+  }
+})
+
+// biomass melting into fuel
+event.custom({
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "kubejs:biomass"
+  },
+  "result": {
+    "amount": 100,
+    "fluid": "ad_astra:fuel"
+  },
+  "temperature": 200,
+  "time": 64
+})
+
+// copper coils
+event.shaped(
+    Item.of('kubejs:copper_coil', 3),
+    [
+        'RIC',
+        'CIR',
+        'RIC'
+    ],
+    {
+        C: {tag: 'forge:plates/copper'},
+        I: {tag: 'forge:rods/iron'},
+        R: 'minecraft:redstone'
+    }
+)
+
+// tier 1 pump
+event.shaped(
+    Item.of('kubejs:motor_tier1', 2),
+    [
+        'IRI',
+        'ICI',
+        'ICI'
+    ],
+    {
+        C: 'kubejs:copper_coil',
+        I: {tag: 'forge:rods/iron'},
+        R: 'minecraft:redstone'
+    }
+)
+
+// copper nozzle
+event.shaped(
+    Item.of('kubejs:copper_nozzle', 1),
+    [
+        ' C ',
+        'C C',
+        'C C'
+    ],
+    {
+        C: {tag: 'forge:plates/copper'}
+    }
+)
+
+// steel coated copper nozzle
+event.custom({
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "item": "kubejs:copper_nozzle"
+  },
+  "cast_consumed": true,
+  "cooling_time": 100,
+  "fluid": {
+    "amount": 360,
+    "tag": "forge:molten_steel"
+  },
+  "result": "kubejs:steel_nozzle"
+})
+
+// remove the default steel engine recipie
+event.remove({ output: 'ad_astra:steel_engine' })
+
+// tier 1 engine
+event.shaped(
+    Item.of('ad_astra:steel_engine', 1),
+    [
+        'MPM',
+        'XFX',
+        ' N '
+    ],
+    {
+        M: 'kubejs:motor_tier1',
+        P: {tag: 'forge:plates/steel'},
+        F: 'ad_astra:engine_frame',
+        N: 'kubejs:steel_nozzle',
+		X: 'ad_astra:fan'
+    }
+)
+
+// remove the default coal generator recipie
+event.remove({ output: 'ad_astra:coal_generator' })
+
+// tier 1 engine
+event.shaped(
+    Item.of('ad_astra:coal_generator', 1),
+    [
+        'PNP',
+        'RXR',
+        'PCP'
+    ],
+    {
+        C: 'kubejs:copper_coil',
+        P: {tag: 'forge:plates/iron'},
+        N: 'kubejs:copper_nozzle',
+        R: 'minecraft:redstone',
+		X: 'ad_astra:fan'
+    }
+)
+
+// remove the default coal generator recipie
+event.remove({ output: 'ad_astra:oxygen_loader' })
+
+// tier 1 engine
+event.shaped(
+    Item.of('ad_astra:oxygen_loader', 1),
+    [
+        'PMP',
+        'TOT',
+        'PRP'
+    ],
+    {
+        P: {tag: 'forge:plates/steel'},
+        M: 'kubejs:motor_tier1',
+        T: 'ad_astra:gas_tank',
+		O: 'ad_astra:oxygen_gear',
+        R: 'minecraft:redstone'
+    }
+)
+
+// NASA workbench needs a brass casing instead of a crafting table
+event.replaceInput(
+  { output: 'ad_astra:nasa_workbench' }, // Arg 1: the filter
+  'minecraft:crafting_table',            // Arg 2: the item to replace
+  'kubejs:bronze_casing'         // Arg 3: the item to replace it with
+  // Note: tagged fluid ingredients do not work on Fabric, but tagged items do.
+)
 
 console.log('Hello! The recipe event has fired!')
 })

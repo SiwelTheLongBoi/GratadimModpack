@@ -58,6 +58,7 @@ StartupEvents.registry('item', event => {
 		.displayName('Copper Plate')
 		.texture('kubejs:item/copper_plate')
 		.tag("forge:plates")
+		.tag("forge:plates/copper")
 		
 	// Tier 1 circuit stage 1 
 	event.create('circuit_tier1_stage1')
@@ -95,6 +96,31 @@ StartupEvents.registry('item', event => {
 		.displayName('Bronze Plate')
 		.texture('kubejs:item/bronze_plate')
 		.tag("forge:plates/bronze")
+		
+	// biofuel item 
+	event.create('biomass')
+		.displayName('Biomass')
+		.texture('kubejs:item/biomass')
+	
+	// copper coil 
+	event.create('copper_coil')
+		.displayName('Copper Coil')
+		.texture('kubejs:item/copper_coil')
+	
+	// Tier 1 motor
+	event.create('motor_tier1')
+		.displayName('Basic Motor')
+		.texture('kubejs:item/motor_tier1')
+		
+	// copper coil 
+	event.create('copper_nozzle')
+		.displayName('Copper Nozzle')
+		.texture('kubejs:item/copper_nozzle')
+	
+	// copper coil 
+	event.create('steel_nozzle')
+		.displayName('Steel Coated Copper Nozzle')
+		.texture('kubejs:item/steel_nozzle')
 })
 
 StartupEvents.registry('fluid', event => {
