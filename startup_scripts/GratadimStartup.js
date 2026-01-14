@@ -101,6 +101,7 @@ StartupEvents.registry('item', event => {
 	event.create('biomass')
 		.displayName('Biomass')
 		.texture('kubejs:item/biomass')
+		.tag("forge:fuels/bio")
 	
 	// copper coil 
 	event.create('copper_coil')
@@ -112,12 +113,12 @@ StartupEvents.registry('item', event => {
 		.displayName('Basic Motor')
 		.texture('kubejs:item/motor_tier1')
 		
-	// copper coil 
+	// copper nozzle 
 	event.create('copper_nozzle')
 		.displayName('Copper Nozzle')
 		.texture('kubejs:item/copper_nozzle')
 	
-	// copper coil 
+	// steel nozzle 
 	event.create('steel_nozzle')
 		.displayName('Steel Coated Copper Nozzle')
 		.texture('kubejs:item/steel_nozzle')

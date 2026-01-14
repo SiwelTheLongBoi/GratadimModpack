@@ -595,7 +595,7 @@ event.custom({
 event.custom({
   "type": "tconstruct:melting",
   "ingredient": {
-    "item": "kubejs:biomass"
+    "tag": "forge:fuels/bio"
   },
   "result": {
     "amount": 100,
@@ -620,7 +620,7 @@ event.shaped(
     }
 )
 
-// tier 1 pump
+// tier 1 motor
 event.shaped(
     Item.of('kubejs:motor_tier1', 2),
     [
@@ -686,7 +686,7 @@ event.shaped(
 // remove the default coal generator recipie
 event.remove({ output: 'ad_astra:coal_generator' })
 
-// tier 1 engine
+// coal generator
 event.shaped(
     Item.of('ad_astra:coal_generator', 1),
     [
@@ -706,7 +706,7 @@ event.shaped(
 // remove the default coal generator recipie
 event.remove({ output: 'ad_astra:oxygen_loader' })
 
-// tier 1 engine
+// oxygen loader
 event.shaped(
     Item.of('ad_astra:oxygen_loader', 1),
     [
@@ -723,11 +723,19 @@ event.shaped(
     }
 )
 
-// NASA workbench needs a brass casing instead of a crafting table
+// NASA workbench has a brass casing instead of a crafting table
 event.replaceInput(
   { output: 'ad_astra:nasa_workbench' }, // Arg 1: the filter
   'minecraft:crafting_table',            // Arg 2: the item to replace
   'kubejs:bronze_casing'         // Arg 3: the item to replace it with
+  // Note: tagged fluid ingredients do not work on Fabric, but tagged items do.
+)
+
+// NASA workbench has a brass casing instead of a crafting table
+event.replaceInput(
+  { output: 'minecraft:hopper' }, // Arg 1: the filter
+  'minecraft:iron_ingot',            // Arg 2: the item to replace
+  {tag: 'forge:ingots/tin'}//'mekanism:tin_ingot'         // Arg 3: the item to replace it with
   // Note: tagged fluid ingredients do not work on Fabric, but tagged items do.
 )
 
